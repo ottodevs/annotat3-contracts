@@ -6,13 +6,15 @@ require("dotenv").config();
 module.exports = {
   solidity: "0.8.19",
   networks: {
+    hardhat: {
+    },
     mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
       accounts: [
         process.env.PRIVATE_KEY,
-        process.env.PRIVATE_KEY2,
-        process.env.PRIVATE_KEY3,
-        process.env.PRIVATE_KEY4,
+        // process.env.PRIVATE_KEY2,
+        // process.env.PRIVATE_KEY3,
+        // process.env.PRIVATE_KEY4,
       ],
     },
   },
@@ -21,4 +23,9 @@ module.exports = {
     gasPrice: 21,
     enabled: true,
   },
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: process.env.ETHERSCAN_API_KEY
+  }
 };

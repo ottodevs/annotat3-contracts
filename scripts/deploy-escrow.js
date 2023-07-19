@@ -7,21 +7,14 @@
 const hre = require("hardhat");
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  const router = "0xE13F6360eCD6dF96290d5581fAC6ab57B9c5fa56"
 
-  const lockedAmount = hre.ethers.parseEther("0.001");
+  const escrow = await hre.ethers.deployContract("Escrow", [router]);
 
-  const lock = await hre.ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
-
-  await lock.waitForDeployment();
+  await escrow.waitForDeployment();
 
   console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
+    `Escrow with ${router} as admin deployed to ${escrow.target}`
   );
 }
 
